@@ -7,3 +7,13 @@
 th {
   text-align: left;
 }
+.board {
+  text-align: center;
+  font-size: 20;
+
+}
+.box{
+border: 1px solid black;
+width: 80px;
+height: 80px;
+}

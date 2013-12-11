@@ -1,23 +1,25 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+  <h1>Beat me at Tic-Tac-Toe!</h1>
+  <p>Hello, player!</p>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
+  <table id="board" class="board">
+    <tr id="row_1">
+      <td id="box_0" class="box">1</td>
+      <td id="box_1" class="box">2</td>
+      <td id="box_2" class="box">3</td>
     </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
+    <tr id="row_2" class="box">
+      <td id="box_3" class="box">4</td>
+      <td id="box_4" class="box">5</td>
+      <td id="box_5" class="box">6</td>
     </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
+    <tr id="row_3" class="box">
+      <td id="box_6" class="box">7</td>
+      <td id="box_7" class="box">8</td>
+      <td id="box_8" class="box">9</td>
     </tr>
   </table>
+
+  <p>Where would you like to play. </p>
+  <form> <input type="number" min="1" max="9" > <input type="submit" value="Place Piece"></form> 
 </div>
