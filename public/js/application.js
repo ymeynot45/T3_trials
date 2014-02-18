@@ -1,7 +1,16 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  //Insert js to changle the value of a clicked box to an X for the player.
+  // Additionally it should change the number in the form.
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+
+
+  // the following should send the player move & reply with cpu move.
+  $("form").on("submit", function(event){
+    event.preventDefault();
+    var data = $( "form" ).serialize();
+
+    $.post('/playermove', data, function(response){
+      $("#box_" + response.playermove ).css("background-color", response.playercolor).text(response.playervalue);
+    });
+  });
 });
