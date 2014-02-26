@@ -1,12 +1,12 @@
 <div class="container">
   <h1>Beat me at Tic-Tac-Toe!</h1>
   <p>Hello, player!</p>
-
   <p>Where would you like to play. </p>
   <form name='player_move' action='/playermove' method='post'> 
     <label> Board Location: </label>
-    <input type='number' name='move' min='1' max='9' step='1'required >
-    <input class='button' id='submit_piece' type='submit' value='Place Piece'>
+    <input type='number' name='move' min='1' max='9' step='1' required>
+    <input id='currentboard' name='board' value="<%= @currentboard %>">
+    <input id='submit_piece' class='button' type='submit' value='Place Piece'>
   </form> 
 
   <table id="board" class="board">

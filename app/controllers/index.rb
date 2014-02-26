@@ -5,8 +5,8 @@ end
 
 post '/playermove' do
   move = params[:move]
-  puts "move = #{move}"
-  #take in player's move
+  currentboard = params[:board]
+  currentboard.gsub!("#{move}", "X")
   #process player move (evaluate if move was legal)
   #Evaluate if the player won the game
   #AI places a piece
@@ -16,7 +16,8 @@ post '/playermove' do
     content_type :json
     {playermove: params[:move],
     playervalue: "X",
-    playercolor: "blue"}.to_json
+    playercolor: "blue",
+    currentboard: "#{currentboard}"}.to_json
   else
     erb :index
   end

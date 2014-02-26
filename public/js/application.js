@@ -11,6 +11,7 @@ $(document).ready(function() {
 
     $.post('/playermove', data, function(response){
       $("#box_" + response.playermove ).css("background-color", response.playercolor).text(response.playervalue);
+      $("#currentboard").val(response.currentboard);
     });
   });
 });
