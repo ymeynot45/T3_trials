@@ -11,6 +11,7 @@ $(document).ready(function() {
 
     $.post('/playermove', data, function(response){
       $("#box_" + response.playermove ).css("background-color", response.playercolor).text(response.playervalue);
+      $("#box_" + response.cpumove ).css("background-color", response.cpucolor).text(response.cpuvalue);
       $("#currentboard").val(response.currentboard);
       $("#message").text(response.message);
       $("#entry").val("");

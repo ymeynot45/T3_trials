@@ -7,6 +7,7 @@ post '/playermove' do
   move = params[:move]
   currentboard = params[:board]
   message = ""
+  cpumove = ""
   if currentboard.include? "#{move}"
     currentboard.gsub!("#{move}", "X")
     if playerwin(currentboard)
@@ -14,17 +15,18 @@ post '/playermove' do
     else
       #AI places a piece
       #Evaluate if the AI won the game
-      #Insert moves back to the page using json
     end
   else
     message = "Invalid Move"
-    #Possible put an error message here for picking a taken box.
   end
   if request.xhr?
     content_type :json
     {playermove: params[:move],
     playervalue: "X",
     playercolor: "blue",
+    cpumove: "#{cpumove}",
+    cpuvalue: "O",
+    cpucolor: "red",
     currentboard: "#{currentboard}",
     message: message}.to_json
   else
