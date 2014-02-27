@@ -6,17 +6,18 @@ end
 post '/playermove' do
   move = params[:move]
   currentboard = params[:board]
-  winner = ""
+  message = ""
   if currentboard.include? "#{move}"
     currentboard.gsub!("#{move}", "X")
     if playerwin(currentboard)
-      winner = "YOU WIN!"
+      message = "YOU WIN!"
     else
       #AI places a piece
       #Evaluate if the AI won the game
       #Insert moves back to the page using json
     end
   else
+    message = "Invalid Move"
     #Possible put an error message here for picking a taken box.
   end
   if request.xhr?
@@ -25,7 +26,7 @@ post '/playermove' do
     playervalue: "X",
     playercolor: "blue",
     currentboard: "#{currentboard}",
-    winner: winner}.to_json
+    message: message}.to_json
   else
     erb :index
   end
