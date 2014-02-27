@@ -13,6 +13,7 @@ $(document).ready(function() {
       $("#box_" + response.playermove ).css("background-color", response.playercolor).text(response.playervalue);
       $("#currentboard").val(response.currentboard);
       $("#winner").text(response.winner)
+      $("#entry").val("")
     });
   });
 });
