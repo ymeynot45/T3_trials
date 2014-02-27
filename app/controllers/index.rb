@@ -8,11 +8,13 @@ post '/playermove' do
   currentboard = params[:board]
   if currentboard.include? "#{move}"
     currentboard.gsub!("#{move}", "X")
-    #process player move (evaluate if move was legal)
-    #Evaluate if the player won the game
-    #AI places a piece
-    #Evaluate if the AI won the game
-    #Insert moves back to the page using json
+    if playerwin(currentboard)
+      # TELL THE PLAYER THEY WON (create and insert into a new hidden field.)
+    else
+      #AI places a piece
+      #Evaluate if the AI won the game
+      #Insert moves back to the page using json
+    end
   else
     #Possible put an error message here for picking a taken box.
   end
