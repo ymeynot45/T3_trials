@@ -6,10 +6,11 @@ end
 post '/playermove' do
   move = params[:move]
   currentboard = params[:board]
+  winner = ""
   if currentboard.include? "#{move}"
     currentboard.gsub!("#{move}", "X")
     if playerwin(currentboard)
-      # TELL THE PLAYER THEY WON (create and insert into a new hidden field.)
+      winner = "YOU WIN!"
     else
       #AI places a piece
       #Evaluate if the AI won the game
@@ -23,7 +24,8 @@ post '/playermove' do
     {playermove: params[:move],
     playervalue: "X",
     playercolor: "blue",
-    currentboard: "#{currentboard}"}.to_json
+    currentboard: "#{currentboard}",
+    winner: winner}.to_json
   else
     erb :index
   end
