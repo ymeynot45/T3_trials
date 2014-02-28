@@ -17,5 +17,8 @@ def cpu_win?(board)
 end
 
 def cpu_move(board)
-
+  if board.include? "5"
+    return "5"
+  end
+  return "O"
 end

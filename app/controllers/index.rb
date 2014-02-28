@@ -14,6 +14,7 @@ post '/playermove' do
       message = "YOU WIN!"
     else
       cpumove = cpu_move(currentboard) #AI places a piece
+      currentboard.gsub!("#{cpumove}", "O")
       if cpu_win?(currentboard) #Evaluate if the AI won the game
       message = "YOU LOOSE!"
       end
