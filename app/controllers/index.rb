@@ -10,11 +10,13 @@ post '/playermove' do
   cpumove = ""
   if currentboard.include? "#{move}"
     currentboard.gsub!("#{move}", "X")
-    if playerwin(currentboard)
+    if player_win?(currentboard)
       message = "YOU WIN!"
     else
-      #AI places a piece
-      #Evaluate if the AI won the game
+      cpumove = cpu_move(currentboard) #AI places a piece
+      if cpu_win?(currentboard) #Evaluate if the AI won the game
+      message = "YOU LOOSE!"
+      end
     end
   else
     message = "Invalid Move"
@@ -30,6 +32,7 @@ post '/playermove' do
     currentboard: "#{currentboard}",
     message: message}.to_json
   else
+    #if JS is turned off we can run it all using the currentboard string.
     erb :index
   end
 end
