@@ -14,17 +14,19 @@ post '/playermove' do
       message = "YOU WIN!"
     else
       cpumove = cpu_move(currentboard) #AI places a piece
+      message = cpumove #just printing to screen for debugging DELETE LATER
       currentboard.gsub!("#{cpumove}", "O")
       if cpu_win?(currentboard) #Evaluate if the AI won the game
-      message = "YOU LOOSE!"
+      #message = "YOU LOOSE!"
       end
     end
   else
     message = "Invalid Move"
+    move = "0"
   end
   if request.xhr?
     content_type :json
-    {playermove: params[:move],
+    {playermove: "#{move}",
     playervalue: "X",
     playercolor: "blue",
     cpumove: "#{cpumove}",
