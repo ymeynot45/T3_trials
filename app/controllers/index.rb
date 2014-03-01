@@ -6,18 +6,18 @@ end
 post '/playermove' do
   move = params[:move]
   currentboard = params[:board]
-  message = ""
-  cpumove = ""
+  message = "0"
+  cpumove = "0"
   if currentboard.include? "#{move}"
     currentboard.gsub!("#{move}", "X")
     if player_win?(currentboard)
       message = "YOU WIN!"
     else
       cpumove = cpu_move(currentboard) #AI places a piece
-      message = cpumove #just printing to screen for debugging DELETE LATER
+      #message = cpumove #just printing to screen for debugging DELETE LATER
       currentboard.gsub!("#{cpumove}", "O")
       if cpu_win?(currentboard) #Evaluate if the AI won the game
-      #message = "YOU LOOSE!"
+      message = "YOU LOOSE!"
       end
     end
   else
