@@ -17,8 +17,6 @@ end
 def cpu_move(board)
   if board.include? "5"  #reset to 5 at end of debugging
     return "5"
-  elsif board.include? "3"  #delete later
-    return "3"              #delete later
   elsif move = check_rows(board)
     return move
   elsif move = check_col(board)
@@ -31,10 +29,10 @@ def cpu_move(board)
     return move
   elsif move = block_diag(board)
     return move
-  else
-    return "blah"
+  elsif board.include? "3"  #delete later
+    return "3"              #delete later
   end
-  return "0" #currently over  
+  return "run off" #currently over
 end
 
 def check_rows(board)
@@ -73,11 +71,16 @@ end
 
 
 def block_rows(board)
-  return "block_rows"
+  rows = board.scan(/.../)
+  move = line_check(rows, "X")
+  if move
+    return move
+  end
+  false
 end
 
 def block_col(board)
-  return "block_col"
+  false
 end
 
 
@@ -85,7 +88,7 @@ def block_diag(board)
   if board[5] == "O" #Diag not possible
     return false
   end
-  return "block_diag"
+  false
 end
 
 def line_check(line, piece)
