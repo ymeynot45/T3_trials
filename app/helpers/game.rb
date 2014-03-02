@@ -2,18 +2,16 @@ def player_win?(board)
 playerwin = [/XXX....../, /...XXX.../, /......XXX/, /X..X..X../, /.X..X..X./, /..X..X..X/, /X...X...X/, /..X.X.X../]
   if playerwin.any? { |win| board =~ win }
     return true
-  else
-    return false
-  end 
+  end
+  false 
 end
 
 def cpu_win?(board)
   cpuwin = [/OOO....../, /...OOO.../, /......OOO/, /O..O..O../, /.O..O..O./, /..O..O..O/, /O...O...O/, /..O.O.O../]
   if cpuwin.any? { |win| board =~ win }
     return true
-  else
-    return false
   end
+   false
 end
 
 def cpu_move(board)
@@ -41,20 +39,10 @@ end
 
 def check_rows(board)
   rows = board.scan(/.../)
-  move = row_check(rows)
+  move = line_check(rows, "O")
   if move
     return move
   end
-  false
-end
-
-def row_check(row)
-  row.each{ |row|
-    if row.count("O") == 2
-      row.gsub!("O", "")
-      return row
-    end 
-  }
   false
 end
 
@@ -64,7 +52,7 @@ def check_col(board)
   secondcol = board.values_at(1, 4, 7)
   thirdcol = board.values_at(2, 5, 8)
   cols = [firstcol.join, secondcol.join, thirdcol.join]
-  move = row_check(cols)
+  move = line_check(cols, "O")
   if move
     return move
   end
@@ -72,7 +60,15 @@ def check_col(board)
 end
 
 def check_diag(board)
-  return "check_diag"
+  board = board.split(//)
+  left = board.values_at(0, 4, 8)
+  right = board.values_at(2, 4, 6)
+  dia = [left.join, right.join]
+  move = line_check(dia, "O")
+  if move
+    return move
+  end
+  false
 end
 
 
@@ -90,5 +86,15 @@ def block_diag(board)
     return false
   end
   return "block_diag"
+end
+
+def line_check(line, piece)
+  line.each{ |line|
+    if line.count(piece) == 2
+      line.gsub!(piece, "")
+      return line
+    end 
+  }
+  false
 end
 
