@@ -15,10 +15,9 @@ post '/playermove' do
     elsif currentboard.count("X") == 5
       message = "IT'S A TIE"
     else
-      cpumove = cpu_move(currentboard) #AI places a piece
-      #message = cpumove #just printing to screen for debugging DELETE LATER
+      cpumove = cpu_move(currentboard)
       currentboard.gsub!("#{cpumove}", "O")
-      if cpu_win?(currentboard) #Evaluate if the AI won the game
+      if cpu_win?(currentboard)
       message = "YOU LOOSE!"
       end
     end
@@ -37,7 +36,7 @@ post '/playermove' do
     currentboard: "#{currentboard}",
     message: message}.to_json
   else
-    #if JS is turned off we can run it all using the currentboard string.
+    #if JS is turned off we can run it all using the currentboard string. NOT implemented yet.
     erb :index
   end
 end

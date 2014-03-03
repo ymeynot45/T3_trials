@@ -15,7 +15,7 @@ def cpu_win?(board)
 end
 
 def cpu_move(board)
-  if board.include? "5"  #reset to 5 at end of debugging
+  if board.include? "5"
     return "5"
   elsif move = check_rows(board)
     return move
@@ -40,7 +40,6 @@ def cpu_move(board)
   else
     return random_move(board)
   end
-  return "run off" #currently over
 end
 
 def check_rows(board)
@@ -77,7 +76,6 @@ def check_diag(board)
   false
 end
 
-
 def block_rows(board)
   rows = board.scan(/.../)
   move = line_check(rows, "X")
@@ -99,7 +97,6 @@ def block_col(board)
   end
   false
 end
-
 
 def block_diag(board)
   if board[4] == "O"
@@ -128,21 +125,6 @@ def line_check(line, piece)
   false
 end
 
-def forking_block(board)
-  if board[0] == "X" and board[8] == "X"
-    return true
-  elsif board[2] == "X" and board[6] == "X"
-    return true
-  else
-    false
-  end
-end
-
-def random_move(board)
-  move = board.gsub(/[OX]/, "")
-  return move[/(.)/]
-end
-
 def seven_block(board)
   if board[0] == "X" and board[7] == "X"
     return true
@@ -159,4 +141,19 @@ def nine_block(board)
     return true
   end
   false
+end
+
+def forking_block(board)
+  if board[0] == "X" and board[8] == "X"
+    return true
+  elsif board[2] == "X" and board[6] == "X"
+    return true
+  else
+    false
+  end
+end
+
+def random_move(board)
+  move = board.gsub(/[OX]/, "")
+  return move[/(.)/]
 end
