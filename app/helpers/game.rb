@@ -80,6 +80,15 @@ def block_rows(board)
 end
 
 def block_col(board)
+  board = board.split(//)
+  firstcol = board.values_at(0, 3, 6)
+  secondcol = board.values_at(1, 4, 7)
+  thirdcol = board.values_at(2, 5, 8)
+  cols = [firstcol.join, secondcol.join, thirdcol.join]
+  move = line_check(cols, "X")
+  if move
+    return move
+  end
   false
 end
 
