@@ -14,7 +14,6 @@ post '/playermove' do
       message = "YOU WIN!"
     elsif currentboard.count("X") == 5
       message = "IT'S A TIE"
-      move = "0"
     else
       cpumove = cpu_move(currentboard) #AI places a piece
       #message = cpumove #just printing to screen for debugging DELETE LATER

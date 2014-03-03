@@ -29,6 +29,10 @@ def cpu_move(board)
     return move
   elsif move = block_diag(board)
     return move
+  elsif board[6] == "7" and seven_block(board)
+    return "7"
+  elsif board[8] == "9" and nine_block(board)
+    return "9"
   elsif board.include? "1" and board.include? "3" and board.include? "7" and board.include? "9"
     return "3"
   elsif board[4] == "O" and forking_block(board)
@@ -137,4 +141,22 @@ end
 def random_move(board)
   move = board.gsub(/[OX]/, "")
   return move[/(.)/]
+end
+
+def seven_block(board)
+  if board[0] == "X" and board[7] == "X"
+    return true
+  elsif board[3] == "X" and board[7] == "X"
+    return true
+  end
+  false
+end
+
+def nine_block(board)
+  if board[2] == "X" and board[7] == "X"
+    return true
+  elsif board[5] == "X" and board[6] == "X"
+    return true
+  end
+  false
 end
