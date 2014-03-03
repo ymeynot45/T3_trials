@@ -94,8 +94,16 @@ end
 
 
 def block_diag(board)
-  if board[5] == "O" #Diag not possible
+  if board[4] == "O" #Diag not possible
     return false
+  end
+  board = board.split(//)
+  left = board.values_at(0, 4, 8)
+  right = board.values_at(2, 4, 6)
+  dia = [left.join, right.join]
+  move = line_check(dia, "X")
+  if move
+    return move
   end
   false
 end
