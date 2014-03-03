@@ -29,8 +29,12 @@ def cpu_move(board)
     return move
   elsif move = block_diag(board)
     return move
-  elsif board.include? "3"  #delete later
-    return "3"              #delete later
+  elsif board.include? "1" and board.include? "3" and board.include? "7" and board.include? "9"
+    return "3"
+  elsif board[4] == "O" and forking_block(board)
+    return "2"
+  else
+    return random_move(board)
   end
   return "run off" #currently over
 end
@@ -118,4 +122,19 @@ def line_check(line, piece)
     end 
   }
   false
+end
+
+def forking_block(board)
+  if board[0] == "X" and board[8] == "X"
+    return true
+  elsif board[2] == "X" and board[6] == "X"
+    return true
+  else
+    false
+  end
+end
+
+def random_move(board)
+  move = board.gsub(/[OX]/, "")
+  return move[/(.)/]
 end
