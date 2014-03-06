@@ -6,7 +6,7 @@ end
 post '/playermove' do
   move = params[:move]
   currentboard = params[:board]
-  message = "0"
+  message = ""
   cpumove = "0"
   if currentboard.include? "#{move}"
     currentboard.gsub!("#{move}", "X")
