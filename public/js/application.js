@@ -1,7 +1,14 @@
 $(document).ready(function() {
+
+  $(".box").click(function(){
+    var clickData = ($(this).text());
+    $("#entry").val(clickData);
+    $("form").submit();
+  });
+
   $("form").on("submit", function(event){
     event.preventDefault();
-    var data = $( "form" ).serialize();
+    var data = $("form").serialize();
 
     $.post('/playermove', data, function(response){
       $("#message").text(response.message);
