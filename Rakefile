@@ -158,3 +158,5 @@ desc "Run the specs"
 RSpec::Core::RakeTask.new(:spec)
 
 task :default  => :specs
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'
